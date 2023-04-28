@@ -27,4 +27,27 @@ window.onload = () => {
       iteration += 1 / 3;
     }, 30);
   }
+
+  const blob = document.getElementById("blob");
+
+  let cursorX = window.innerWidth/2;
+  let cursorY = window.innerHeight/2;
+  let blobX = window.innerWidth/2;
+  let blobY = window.innerHeight/2;
+
+  window.onpointermove = e => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+  };
+
+  function animateBlob() {
+    blobX += (cursorX - blobX) * 0.01;
+    blobY += (cursorY - blobY) * 0.01;
+
+    blob.style.left = `${blobX}px`;
+    blob.style.top = `${blobY}px`;
+
+    requestAnimationFrame(animateBlob);
+  }
+  animateBlob();
 }
